@@ -1,0 +1,22 @@
+<h1>Event Page</h1>
+<form class="form" autocomplete="off" novalidate>
+  <div class="form-group" *ngIf="currentEvents.length > 0">
+    <ul  *ngFor="let event of currentEvents">
+      <li>{{event.name}}</li>
+      <li>{{event.date | date:'dd/MM/yyyy' }}</li>
+      <li>{{event.venue}}</li>
+    </ul>
+  </div>
+  <div class="form-group no-events" *ngIf="currentEvents.length === 0" >
+    <div> No events available</div>
+  </div>
+  <div class="form-inline">
+    <a class="btn-register" [routerLink]="['/event']">
+      Create Event
+    </a>
+    <a class="btn-register" [routerLink]="['/notification']">
+      Create Notification
+    </a>
+  </div>
+</form>
+

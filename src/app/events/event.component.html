@@ -1,0 +1,40 @@
+<div class="center-block">
+  <form class="form " [formGroup]="eventForm" (ngSubmit)="createForm(eventForm.value)" autocomplete="off" novalidate>
+
+    <div class="form-group" [ngClass]="{'has-error':fh.hasError(eventForm, 'name')}">
+      <input type="text" name="name" class="form-control" placeholder="Event Name"
+             formControlName="name" required>
+      <div class="alert alert-danger" *ngIf="eventSubmitted && fh.hasError(eventForm, 'name')">
+        Event must be at least 3 characters long.
+      </div>
+    </div>
+
+    <div class="form-group" [ngClass]="{'has-error':fh.hasError(eventForm, 'name')}">
+      <input type="text" name="venue" class="form-control" placeholder="Event venue"
+             formControlName="venue" required>
+      <div class="alert alert-danger" *ngIf="eventSubmitted && fh.hasError(eventForm, 'venue')">
+        Event must be at least 3 characters long.
+      </div>
+    </div>
+
+    <div class="form-group" [ngClass]="{'has-error':fh.hasError(eventForm, 'description')}">
+    <textarea name="description" placeholder="Enter description here" class="form-control"
+              formControlName="description" required>
+    </textarea>
+      <div class="alert alert-danger" *ngIf="eventSubmitted && fh.hasError(eventForm, 'description')">
+        desc must be at least 5 characters long.
+      </div>
+    </div>
+    <div class="form-group" [ngClass]="{'has-error':fh.hasError(eventForm, 'date')}">
+      <ng2-datepicker [options]="options" [(ngModel)]="date" formControlName="date"></ng2-datepicker>
+      <div class="alert alert-danger" *ngIf="eventSubmitted && fh.hasError(eventForm, 'date')">
+        desc must be at least 3 characters long.
+      </div>
+    </div>
+    <div>
+      <button class="btn btn-inverse btn-sm btn-primary pull-right" [disabled]="!eventForm.valid" type="submit">
+        Login
+      </button>
+    </div>
+  </form>
+</div>
