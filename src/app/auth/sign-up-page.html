@@ -59,7 +59,7 @@
           </select>
         </div>
       </div>
-      <div class="form-group col-sm-2" [ngClass]="{ 'has-error':fh.hasError(registerUser, 'role')}">
+      <div class="form-group" [ngClass]="{ 'has-error':fh.hasError(registerUser, 'role')}">
         <label>Role</label>
         <select class="form-control" formControlName="role" title="role" required>
           <option disabled value="">Role</option>
