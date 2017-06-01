@@ -6,7 +6,7 @@ import {FormHelperService} from '../services/form-helper.service';
 import {AppState} from '../app.service';
 import {ErrorHandleService} from '../services/error-handle.service';
 
-@Component ({
+@Component({
   selector: 'register',
   templateUrl: './sign-up-page.html',
   styleUrls: ['./login.less'],
@@ -28,50 +28,50 @@ export class SignUpComponent implements OnInit {
   public yearList = [];
   public roleList = [{name: 'ADMIN'}, {name: 'USER'}, {name: 'MODERATOR'}];
 
-  constructor (public appState: AppState,
-               private fb: FormBuilder,
-               private auth: AuthService,
-               private router: Router,
-               private eh: ErrorHandleService,
-               public fh: FormHelperService) {
+  constructor(public appState: AppState,
+              private fb: FormBuilder,
+              private auth: AuthService,
+              private router: Router,
+              private eh: ErrorHandleService,
+              public fh: FormHelperService) {
   }
 
-  public ngOnInit (): void {
-    this.getDates ();
-    this.getMonths ();
-    this.getYears ();
-    this.registerUser = this.fb.group ({
-      firstName: new FormControl ('', [Validators.required, Validators.minLength (3)]),
-      lastName: new FormControl ('', [Validators.required, Validators.minLength (3)]),
-      username: new FormControl ('', [Validators.required, Validators.minLength (3)]),
-      email: new FormControl ('', [Validators.required, Validators.minLength (3)]),
-      phoneNumber: new FormControl ('', [Validators.required, Validators.maxLength (10)]),
-      password: new FormControl ('', [Validators.required, Validators.minLength (7)]),
-      role: new FormControl ('', [Validators.required]),
-      day: new FormControl ('', [Validators.required]),
-      month: new FormControl ('', [Validators.required]),
-      year: new FormControl ('', [Validators.required]),
-      confirm: new FormControl ('', [Validators.required]),
+  public ngOnInit(): void {
+    this.getDates();
+    this.getMonths();
+    this.getYears();
+    this.registerUser = this.fb.group({
+      firstName: new FormControl('', [Validators.required, Validators.minLength(3)]),
+      lastName: new FormControl('', [Validators.required, Validators.minLength(3)]),
+      username: new FormControl('', [Validators.required, Validators.minLength(3)]),
+      email: new FormControl('', [Validators.required, Validators.minLength(3)]),
+      phoneNumber: new FormControl('', [Validators.required, Validators.maxLength(10)]),
+      password: new FormControl('', [Validators.required, Validators.minLength(7)]),
+      role: new FormControl('', [Validators.required]),
+      day: new FormControl('', [Validators.required]),
+      month: new FormControl('', [Validators.required]),
+      year: new FormControl('', [Validators.required]),
+      confirm: new FormControl('', [Validators.required]),
     }, {
-      validator: this.fh.matchingPasswords ('password', 'confirm')
+      validator: this.fh.matchingPasswords('password', 'confirm')
     });
   }
 
-  public register (signUpData: any) {
-    this.auth.signup (signUpData).subscribe ({
-      next: (response) => this.auth.setToken (response.json ().access_token),
-      error: (err: any) => this.eh.handleError (err),
-      complete: () => this.router.navigateByUrl ('/')
+  public register(signUpData: any) {
+    this.auth.signup(signUpData).subscribe({
+      next: (response) => this.auth.setToken(response.json().access_token),
+      error: (err: any) => this.eh.handleError(err),
+      complete: () => this.router.navigateByUrl('/')
     });
   }
 
-  private getDates () {
+  private getDates() {
     for (let i = 1; i <= 31; i++) {
-      this.datesList.push (i);
+      this.datesList.push(i);
     }
   }
 
-  private getMonths () {
+  private getMonths() {
     this.monthList = [
       {id: 0, name: 'January'},
       {id: 1, name: 'February'},
@@ -88,11 +88,11 @@ export class SignUpComponent implements OnInit {
     ];
   }
 
-  private getYears () {
-    let max = new Date ().getFullYear ();
+  private getYears() {
+    let max = new Date().getFullYear();
     let min = max - 40;
     for (let i = max; i >= min; i--) {
-      this.yearList.push (i);
+      this.yearList.push(i);
     }
   }
 }

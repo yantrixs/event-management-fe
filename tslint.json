@@ -22,6 +22,10 @@
     "ordered-imports": false,
     "switch-default": false,
     "no-empty": false,
+    "ter-indent": [
+      true, 4
+    ],
+    "indent-size": [true, 4],
     "no-trailing-whitespace": false,
     "align": [true, "parameters", "statements"],
     "quotemark": [true, "single", "double", "avoid-escape"],
